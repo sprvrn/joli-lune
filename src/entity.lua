@@ -42,7 +42,6 @@ function Entity:setPause(pause)
 
 	if pause then
 		if functional.contains(self.scene.updatedEntities, self) then
-			--print("pause entity", self.name)
 			table.remove(self.scene.updatedEntities, table.index_of(self.scene.updatedEntities, self))
 		end
 	else
@@ -57,7 +56,6 @@ function Entity:setHide(hide)
 
 	if hide then
 		if functional.contains(self.scene.drawnEntities, self) then
-			--print("hide entity", self.name)
 			table.remove(self.scene.drawnEntities, table.index_of(self.scene.drawnEntities, self))
 
 			-- todo: better
