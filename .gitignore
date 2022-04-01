@@ -1,0 +1,8 @@
+build/
+out/
+libs/
+licenses/
+_licenses
+_libs
+_src
+lune.sublime-workspace
