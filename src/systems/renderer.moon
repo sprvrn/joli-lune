@@ -45,9 +45,8 @@ class Renderer extends System
 		if render and render.rendertype == "sprite"
 			render\removeFromBatch!
 			
-			@list[name] = nil
-			table.remove_value @order, name
-
+		@list[name] = nil
+		table.remove_value @order, name
 
 	removeCanvas: =>
 		@canvas = nil
