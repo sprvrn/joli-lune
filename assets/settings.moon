@@ -36,6 +36,7 @@
 	debug:true
 	
 	mouse:true
+    mousevisible:true
 
 	autobatch:true
 	batchmaxsprites:1000

@@ -130,7 +130,6 @@ function TextRenderer:changeText(txt)
 
 	if self.game.settings.iconimg and self.game.assets.sprites[self.game.settings.iconimg] then
 	    for name,anim in pairs(self.game.assets.sprites[self.game.settings.iconimg].anims) do
-	    	local n = string.upper(name)
 	    	self.text = string.gsub(self.text, string.upper(name), tostring(anim.id))
 	    end
 	end
