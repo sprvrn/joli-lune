@@ -6,6 +6,8 @@ MIT License (see licence file)
 
 System = require "src.systems.system"
 
+lg = love.graphics
+
 class Collider extends System
 	__tostring: => return "collider"
 	onCreate: (w=1,h=1,solid,ox=0,oy=0) =>
@@ -132,8 +134,9 @@ class Collider extends System
 		if not world\hasItem @
 			return
 		x,y,w,h = world\getRect @
-		love.graphics.setColor 0,1,0,1 
-		love.graphics.rectangle "line",x,y,w,h
-		love.graphics.setColor 1,1,1,1 
+		lg.setLineStyle "rough"
+		lg.setColor 0,1,0,1 
+		lg.rectangle "line",x,y,w,h
+		lg.setColor 1,1,1,1 
 
 return Collider
