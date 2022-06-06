@@ -71,16 +71,16 @@ class Menu extends System
 			element\clickable system
 
 	setCurrent: (element) =>
-		if not @current
-			return
+		--if not @current
+		--	return
 
-		if @current.entity.renderer
-			if render = @current.entity.renderer\get!
+		if @current and @current.entity.renderer
+			for _,render in pairs @current.entity.renderer.list
 				if render.rendertype == "text"
 					render\setStyle @current.style
 
-		if type(@current.onquit) == "function"
-			@current.onenter(@current)
+			if type(@current.onquit) == "function"
+				@current.onenter(@current)
 
 		@current = element
 
@@ -95,7 +95,7 @@ class Menu extends System
 				@current.entity.soundset.sources.nav\play!
 
 		if @current.entity.renderer
-			if render = @current.entity.renderer\get!
+			for _,render in pairs @current.entity.renderer.list
 				if render.rendertype == "text"
 					render\setStyle @current.hoverstyle or @current.style or "main"
 

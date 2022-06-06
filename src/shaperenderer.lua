@@ -50,7 +50,7 @@ function ShapeRenderer:new(game, type, color, mode, arg1, arg2)
 	self.tint = color
 	self.linestyle = "rough"
 	if type == "line" then
-		self.linestyle = self.mode
+		--self.linestyle = self.mode or "rough"
 	end
 end
 
@@ -67,7 +67,7 @@ function ShapeRenderer:draw(position, x, y, z, r, sx, sy,ox,oy)
 	lg.scale(sx,sy)
 	lg.rotate(r)
 
-	lg.setLineStyle(self.linestyle)
+	--lg.setLineStyle(self.linestyle)
 
 	shapefunc[self.type](getArgs[self.type](self.mode, x, y, self.arg1, self.arg2))
 
