@@ -77,17 +77,15 @@ function Scene:newEntity(name, ...)
 	newEntity:setPause(false)
 	newEntity:setHide(false)
 
-	--table.sort(self.entities, sortByName)
-	--table.sort(self.entities, sortByZ)
-
-	--table.sort(self.updatedEntities, sortByName)
-	--table.sort(self.drawnEntities, sortByZ)
-
-	table.sort(self.updatedEntities, sortByName)
-	table.sort(self.drawnEntities, sortByZ)
+	self:sortEntities()
 
 	self[name] = newEntity
 	return newEntity
+end
+
+function Scene:sortEntities()
+	table.sort(self.updatedEntities, sortByName)
+	table.sort(self.drawnEntities, sortByZ)
 end
 
 function Scene:initPrefab(prefabname, ...)
@@ -235,15 +233,7 @@ function Scene:update(dt)
 		end
 	end
 
-	--table.sort(self.entities, sortByName)
-	--table.sort(self.entities, sortByZ)
-	--
-
-	--table.sort(self.updatedEntities, sortByName)
-	--table.sort(self.drawnEntities, sortByZ)
-
-	table.sort(self.updatedEntities, sortByName)
-	table.sort(self.drawnEntities, sortByZ)
+	--self:sortEntities()
 
 	for i=1,#self.updatedEntities do
 		local entity = self.updatedEntities[i]
