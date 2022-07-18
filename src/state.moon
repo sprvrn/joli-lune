@@ -5,7 +5,7 @@ MIT License (see licence file)
 ]]
 
 class State
-	new: (game, name, options) =>
+	new: (game, name, options={}) =>
 		@_name = name
 
 		@game = game

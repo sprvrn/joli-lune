@@ -68,10 +68,8 @@ function Game:new()
 
 	self.statetree = self:buildStateTree()
 
-	self.systems = cargo.init({dir='src/systems',loaders={
-		moon=moonFileLoader}})
-	self.assetssystems = cargo.init({dir='assets/systems',loaders={
-		moon=moonFileLoader}})
+	self.systems = cargo.init({dir='src/systems',loaders={moon=moonFileLoader}})
+	self.assetssystems = cargo.init({dir='assets/systems',loaders={moon=moonFileLoader}})
 
 	self.file = require("src.file")(self.assets.save)
 
@@ -201,15 +199,16 @@ end
 
 function Game:buildStateTree()
 	local r = {}
-	for name,options in pairs(require('assets.states.statetree')) do
+	for name, file in pairs(self.assets.states()) do
 		r[name] = {
-			stateFile = self.assets.states[name],
+			stateFile = file,
 			name = name,
 			pause = false,
 			hide = false,
-			options = options
+			options = {}
 		}
 	end
+
 	return r
 end
 

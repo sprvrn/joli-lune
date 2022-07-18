@@ -36,6 +36,7 @@ class Renderer extends System
 				@list[name] = TextRenderer @game, ...
 
 		return @list[name]
+		
 	setCanvas: (width,height) =>
 		@canvas = graphics.newCanvas(width,height)
 		@\updateCanvas!
