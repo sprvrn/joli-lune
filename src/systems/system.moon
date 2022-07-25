@@ -36,6 +36,8 @@ class System
 	onStay: (other) =>
 	onEnter: (other) =>
 	onLeave: (other) =>
+	onDragInit: (x,y) =>
+	onDragDrop: (x,y) =>
 	-- end callbacks
 
 	updateCron: (dt) =>

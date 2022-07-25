@@ -27,6 +27,7 @@ class Collider extends System
 		@mousehover = false
 		@doubleclick = false
 		@prevFrameCol = {}
+		@dragable = false
 
 	move: (x,y) =>
 		ax, ay, cols, len = @entity.scene.world\move @,x,y,(item,other)->
@@ -65,6 +66,11 @@ class Collider extends System
 
 		world\update @,@x,@y,@w,@h
 
+		if @draged
+			mx, my = @entity.scene.cameras.main\mousePosition!
+			@position\move mx - (@w / 2),my - (@h / 2)
+
+
 		systems = @entity.systems
 		if @mousehover
 			if not @lastframehover
@@ -82,9 +88,15 @@ class Collider extends System
 					c\onLeftClick!
 					@doubleclick=true
 					@\cron "after",.2,()->@doubleclick=false
+					if @dragable
+						@draged = true
+						c\onDragInit @x, @y
 			if @game.input\pressed "rightclick"
 				for _,c in pairs systems
 					c\onRightClick!
+					if @draged
+						@draged = false
+						c\onDragDrop @x, @y
 			if @game.input\pressed "middleclick"
 				for _,c in pairs systems
 					c\onMiddleClick!
@@ -94,6 +106,9 @@ class Collider extends System
 			if @game.input\released "leftclick"
 				for _,c in pairs systems
 					c\onLeftClickUp!
+					if @draged
+						c\onDragDrop @x, @y
+				if @draged then @draged = false
 
 		if not @mousehover
 			if @lastframehover
