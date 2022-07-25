@@ -10,7 +10,7 @@ lg = love.graphics
 
 class Collider extends System
 	__tostring: => return "collider"
-	onCreate: (w=1,h=1,solid,ox=0,oy=0) =>
+	onCreate: (w=1,h=w,solid,ox=0,oy=0) =>
 		@ox,@oy = ox,oy
 
 		@\updatePosition!
@@ -27,6 +27,7 @@ class Collider extends System
 		@mousehover = false
 		@doubleclick = false
 		@prevFrameCol = {}
+
 		@dragable = false
 
 	move: (x,y) =>
@@ -139,6 +140,9 @@ class Collider extends System
 				for _,c in pairs systems
 					c\onLeave prevState
 				table.remove @prevFrameCol, table.index_of(self.prevFrameCol,prevState)
+
+	setDragAndDrop: (bounds) =>
+		@dragable = true
 
 	draw: =>
 		if @hidecollider

@@ -220,12 +220,12 @@ function Scene:update(dt)
 					end
 				end)
 
-				for i=1,len do
-					local item = items[i]
-					item.mousehover = true
-				end
+				--for i=1,len do
+					--local item = items[i]
+					--item.mousehover = true
+				--end
 				if type(items) == "table" and len > 0 then
-				    --items[len].mousehover = true
+				    items[len].mousehover = true
 				end
 				
 				-- todo : focus on top item only
